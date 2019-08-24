@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import Doppler from './components/Doppler';
 import Distance from './components/Distance'
+import RainAttenuation from './components/Attenuation/Rain'
 import Main from './components/Main'
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
 
@@ -16,6 +17,7 @@ class Core extends Component{
                     <Route path="/" component={Main} exact/>
                     <Route path="/doppler" component={Doppler} />
                     <Route path="/distance" component={Distance} />
+                    <Route path="/rain_attenuation" component={RainAttenuation} />
                 </Switch>
             </BrowserRouter>
         )

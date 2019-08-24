@@ -64,6 +64,7 @@ class Doppler extends React.Component {
                         Doppler
                     </Breadcrumb.Item>
                     <Breadcrumb.Item href="/distance">Distance</Breadcrumb.Item>
+                    <Breadcrumb.Item href="/rain_attenuation">Rain attenuation</Breadcrumb.Item>
                 </Breadcrumb>
 
                 <Container id="main_container">
@@ -80,7 +81,7 @@ class Doppler extends React.Component {
                         </Form.Group>
 
                         <Form.Group >
-                            <Form.Label>Satellite inclination in grades</Form.Label>
+                            <Form.Label>Satellite inclination in degrees</Form.Label>
                             <Form.Control type="number" step="0.000001" placeholder="Enter inclination" name="alpha" />
                         </Form.Group>
 

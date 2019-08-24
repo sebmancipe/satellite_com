@@ -64,12 +64,13 @@ class Distance extends Component {
                         Doppler
                     </Breadcrumb.Item>
                     <Breadcrumb.Item active>Distance</Breadcrumb.Item>
+                    <Breadcrumb.Item href="/rain_attenuation">Rain attenuation</Breadcrumb.Item>
                 </Breadcrumb>
 
                 <Container id="main_container">
                 <Form onChange={this.handleChange} onSubmit={this.onSubmit}>
                     <Form.Group>
-                        <Form.Label>Satellite frequency in MHz</Form.Label>
+                        <Form.Label>Satellite frequency in GHz</Form.Label>
                         <Form.Control type="number" step="0.000001" placeholder="Enter frequency" name="fsat" />
                     </Form.Group>
 
