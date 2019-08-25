@@ -21,7 +21,7 @@ class Doppler extends React.Component {
     }
 
     handleChange = (e) => {
-        this.setState({ [e.target.name]: e.target.value })
+        this.setState({ [e.target.name]: Number(e.target.value) })
     }
 
     onSubmit = (e) => {
@@ -31,7 +31,7 @@ class Doppler extends React.Component {
 
     getDoppler(Fsat, Vsat, alpha, height) {
         var Vrel = this.getVrel(this.getVx(Vsat, this.getTheta(alpha, this.getBeta(alpha, height))), alpha);
-        var result = (alpha > 90) ? ((c) / (c - Vrel)) * Fsat * 10e6 : ((c) / (c + Vrel)) * Fsat * 10e6
+        var result = (alpha > 90) ? ((c) / (c - Vrel)) * Fsat * 1e6 : ((c) / (c + Vrel)) * Fsat * 1e6
         this.setState({ result: result.toExponential() })
     }
 
@@ -40,19 +40,23 @@ class Doppler extends React.Component {
     }
 
     getVx(Vsat, theta) {
-        return (Vsat * Math.cos(theta));
+        return (Vsat * Math.cos(this.toRadians(theta)));
     }
 
     getTheta(alpha, beta) {
-        return (this.toRadians(90) - this.toRadians(alpha) - beta);
+        return (90 - alpha - this.toDegrees(beta));
     }
 
     getBeta(alpha, height) {
-        return Math.asin((R * Math.sin(this.toRadians(alpha) + this.toRadians(90))) / (height + R));
+        return Math.asin((R * Math.sin(this.toRadians(alpha + 90))) / (height + R));
     }
 
     toRadians(angle) {
         return angle * (Math.PI / 180);
+    }
+
+    toDegrees(angle){
+        return angle * (180/Math.PI)
     }
 
     render() {
@@ -81,12 +85,12 @@ class Doppler extends React.Component {
                         </Form.Group>
 
                         <Form.Group >
-                            <Form.Label>Satellite inclination in degrees</Form.Label>
+                            <Form.Label>Station elevation in degrees</Form.Label>
                             <Form.Control type="number" step="0.000001" placeholder="Enter inclination" name="alpha" />
                         </Form.Group>
 
                         <Form.Group>
-                            <Form.Label>Satellite height in meters</Form.Label>
+                            <Form.Label>Satellite height in Km</Form.Label>
                             <Form.Control type="number" step="0.000001" placeholder="Enter height" name="height" />
                         </Form.Group>
 

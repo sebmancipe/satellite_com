@@ -86,7 +86,7 @@ class RainAttenuation extends Component {
 
         //Calculate hr
         let height_r = this.state.height_0+0.36+height_s; //¿? The height_r is lower than height_s, so always is going to be a negative number
-        the overshoot attenuation in the 0.01% of the year
+
         //if(height_r-height_s<=0) this.setState({answer:0})
 
         //Calculate Ls

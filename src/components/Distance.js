@@ -1,4 +1,7 @@
-
+/**
+ * Get the distance from satellite to terrain station. Is used in FSL (Free Space Losses) formula:
+ * FSL = 32.4 + 20*log(f)+20*log(d)
+ */
 import React, { Component } from 'react';
 import { Form, Button, Container, Breadcrumb } from 'react-bootstrap';
 
@@ -12,12 +15,13 @@ class Distance extends Component {
             fsat: 0,
             height: 0,
             incl_angle: 0,
-            result: 0
+            result: 0,
+            resultFSL: 0
         }
     }
 
     handleChange = (e) => {
-        this.setState({ [e.target.name]: e.target.value })
+        this.setState({ [e.target.name]: Number(e.target.value) })
     }
 
     onSubmit = (e) => {
@@ -29,27 +33,30 @@ class Distance extends Component {
         let beta = this.getBeta(incl_angle, height)
         let alpha = this.getAlpha(beta, incl_angle)
         let angleRad = this.degreesToRadians(incl_angle + 90)
-        //let result = ((R+height)/this.radiansToDegrees(Math.sin(angleRad)))*this.radiansToDegrees(Math.sin(alpha))
-        let result = this.radiansToDegrees(((R + height) / Math.sin(angleRad)) * Math.sin(this.degreesToRadians(alpha)))
+        let result = ((R + height) / Math.sin(angleRad)) * Math.sin(this.degreesToRadians(alpha))
+
+        //Get FSL
+        let resultFSL = 32.4 + 20*Math.log10(fsat)+20*Math.log10(result*1e3)
         this.setState({ result })
+        this.setState({resultFSL})
+
     }
 
     degreesToRadians(x) {
-        return (x * Math.PI) / 180;
+        return x * (Math.PI/180);
     }
 
     radiansToDegrees(x) {
-        return (x * 180) / Math.PI;
+        return x * (180/Math.PI);
     }
 
     getBeta(incl_angle, height) {
-        let angleRad = this.degreesToRadians(incl_angle + 90)
-        //return Math.asin(this.degreesToRadians((R*this.radiansToDegrees(Math.sin(angleRad))/(R+height))))
-        return this.radiansToDegrees(Math.asin((R * Math.sin(angleRad)) / (R + height)))
+        const beta = Math.asin( (R * Math.sin(this.degreesToRadians(Number(incl_angle) + 90)) ) / (R + Number(height)))
+        return beta
     }
 
     getAlpha(beta, incl_angle) {
-        return 90 - beta - incl_angle
+        return (90 - this.radiansToDegrees(beta) - incl_angle)
     }
 
 
@@ -80,7 +87,7 @@ class Distance extends Component {
                     </Form.Group>
 
                     <Form.Group>
-                        <Form.Label>Satellite height in meters</Form.Label>
+                        <Form.Label>Satellite height in Km</Form.Label>
                         <Form.Control type="number" step="0.000001" placeholder="Enter height" name="height" />
                     </Form.Group>
 
@@ -89,7 +96,8 @@ class Distance extends Component {
                 </Button>
                 </Form>
                 <br></br>
-                <div>The distance from the terrain station and the satellite is {this.state.result.toExponential()} meters</div>
+                <div>The distance from the terrain station and the satellite is {this.state.result} Km</div>
+                <div>The attenuation (FSL) is {this.state.resultFSL} dB</div>
 
 
             </Container>
