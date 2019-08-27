@@ -72,6 +72,7 @@ class Distance extends Component {
                     </Breadcrumb.Item>
                     <Breadcrumb.Item active>Distance</Breadcrumb.Item>
                     <Breadcrumb.Item href="/rain_attenuation">Rain attenuation</Breadcrumb.Item>
+                    <Breadcrumb.Item href="/foot_print">Foot print</Breadcrumb.Item>
                 </Breadcrumb>
 
                 <Container id="main_container">

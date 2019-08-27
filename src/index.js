@@ -4,6 +4,7 @@ import './index.css';
 import Doppler from './components/Doppler';
 import Distance from './components/Distance'
 import RainAttenuation from './components/Attenuation/Rain'
+import FootPrint from './components/FootPrint'
 import Main from './components/Main'
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
 
@@ -18,6 +19,7 @@ class Core extends Component{
                     <Route path="/doppler" component={Doppler} />
                     <Route path="/distance" component={Distance} />
                     <Route path="/rain_attenuation" component={RainAttenuation} />
+                    <Route path="/foot_print" component={FootPrint} />
                 </Switch>
             </BrowserRouter>
         )

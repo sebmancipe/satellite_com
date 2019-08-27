@@ -152,6 +152,7 @@ class RainAttenuation extends Component {
                     <Breadcrumb.Item href="/doppler">Doppler</Breadcrumb.Item>
                     <Breadcrumb.Item href="/distance">Distance</Breadcrumb.Item>
                     <Breadcrumb.Item active>Rain attenuation</Breadcrumb.Item>
+                    <Breadcrumb.Item href="/foot_print">Foot print</Breadcrumb.Item>
                 </Breadcrumb>
 
                 <Container id="main_container">

@@ -18,6 +18,9 @@ class Main extends Component {
                 <NavLink to="/rain_attenuation" > <Button variant="outline-primary" type="button">
                 Calculate rain attenuation</Button>
                 </NavLink>
+                <NavLink to="/foot_print" > <Button variant="outline-primary" type="button">
+                Calculate foot print</Button>
+                </NavLink>
             </div>
         )
     }

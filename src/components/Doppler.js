@@ -69,6 +69,7 @@ class Doppler extends React.Component {
                     </Breadcrumb.Item>
                     <Breadcrumb.Item href="/distance">Distance</Breadcrumb.Item>
                     <Breadcrumb.Item href="/rain_attenuation">Rain attenuation</Breadcrumb.Item>
+                    <Breadcrumb.Item href="/foot_print">Foot print</Breadcrumb.Item>
                 </Breadcrumb>
 
                 <Container id="main_container">
